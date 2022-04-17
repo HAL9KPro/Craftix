@@ -1,2 +1,2 @@
 # Craftix
-Desktop Environment &amp; Peripheral Manager for CraftOS.
+Embedded Software Manager for CC:Tweaked based computers.
