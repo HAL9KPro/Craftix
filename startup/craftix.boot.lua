@@ -8,7 +8,7 @@ local loaderPath;
 
 --Define settings loader
 
-local function bctLoader (local path)
+local function bctLoader (path)
   settings.clear(); -- settings clear
   settings.load(path); -- Load boot configuration table
   loaderPath = settings.get("LOADER_PATH");
