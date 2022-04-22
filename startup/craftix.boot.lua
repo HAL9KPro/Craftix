@@ -17,7 +17,7 @@ end
 
 --Define bootloader loader
 
-local function bootLoader (local path)
+local function bootLoader (path)
   term.clear();
   os.run({}, path); --Load the bootloader
 end
