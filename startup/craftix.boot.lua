@@ -2,7 +2,7 @@
 
 --Define variables
 local version = 0.1
-local bctPath = "/craftix/boot/boot.conf.lua";
+local bctPath = "/craftix/boot/bct.conf.lua";
 local loaderPath;
 
 
@@ -41,7 +41,7 @@ local function boot () --Boot function
 
     --LOAD BCT AND CHECK FOR ERRORS
     if pcall bctLoader(bctPath) then
-  
+    
     else
         local loop = true;
         term.setCursorPos(0, 4);
