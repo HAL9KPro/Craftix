@@ -2,7 +2,7 @@
 
 --Define variables
 local version = 0.1
-local bctPath = "/craftix/boot/boot.conf";
+local bctPath = "/craftix/boot/boot.conf.lua";
 local loaderPath;
 
 
@@ -51,7 +51,7 @@ local function boot () --Boot function
             term.clearLine();
             term.write("path>");
             local newPath = read();
-            if pcall bootLoader(newPath) then loop = false else end
+            if pcall settingsLoader(newPath) then loop = false else end
         end
    end
 
@@ -71,6 +71,9 @@ local function boot () --Boot function
         end
    end
 end
+
+
+parallel.waitForAny(boot, terminateCatch); --Execute the boot and terminate catcher
 
 
     

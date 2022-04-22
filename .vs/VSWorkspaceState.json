@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\install",
+    "\\install\\img",
+    "\\install\\img\\boot",
+    "\\install\\img\\lib",
+    "\\install\\preins\\boot"
+  ],
+  "SelectedNode": "\\install\\img\\lib\\std.api.lua",
+  "PreviewInSolutionExplorer": false
+}
