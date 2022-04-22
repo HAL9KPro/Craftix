@@ -40,7 +40,7 @@ local function boot () --Boot function
     term.write("Welcome to Craftix eBoot!");
 
     --LOAD BCT AND CHECK FOR ERRORS
-    if pcall bctLoader(bctPath) then
+    if pcall(bctLoader(bctPath)) then
     
     else
         local loop = true;
@@ -51,12 +51,12 @@ local function boot () --Boot function
             term.clearLine();
             term.write("path>");
             local newPath = read();
-            if pcall settingsLoader(newPath) then loop = false else end
+            if pcall(settingsLoader(newPath)) then loop = false else end
         end
    end
 
 
-    if pcall bootLoader(loaderPath) then
+    if pcall(bootLoader(loaderPath)) then
   
     else
         local loop = true;
@@ -67,7 +67,7 @@ local function boot () --Boot function
             term.clearLine();
             term.write("path>");
             local newPath = read();
-            if pcall bootLoader(newPath) then loop = false else end
+            if pcall(bootLoader(newPath)) then loop = false else end
         end
    end
 end

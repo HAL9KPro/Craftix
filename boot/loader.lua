@@ -11,7 +11,7 @@ local function bctLoader (local path)
 end
 
 --LOAD BCT AND CHECK FOR ERRORS
-    if pcall bctLoader(bctPath) then
+    if pcall(bctLoader(bctPath)) then
   
     else
         local loop = true;
@@ -22,7 +22,7 @@ end
             term.clearLine();
             term.write("path>");
             local newPath = read();
-            if pcall settingsLoader(newPath) then loop = false else end
+            if pcall(settingsLoader(newPath)) then loop = false else end
         end
    end
 
