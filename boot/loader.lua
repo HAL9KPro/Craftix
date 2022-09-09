@@ -1,7 +1,7 @@
 --Craftix eBoot loader
 
 --vars
-local bctPath = "/craftix/boot/bct.conf.lua";
+local bctPath = "/craftix/boot/eboot.ect";
 local kernelPath;
 
 local function bctLoader (local path)
@@ -10,23 +10,63 @@ local function bctLoader (local path)
   kernelPath = settings.get("KERNEL_PATH");
 end
 
+local function kldLoader (local path)
+  
+  os.run(path)
+  
+end
+
+local function manualLoad ()
+  term.clear();
+  term.setCursorPos(1, 1)
+  term.write("BOOT: Enter kernel path and hit enter:")
+  
+  
+  
+end
+  
+  
+ --boot command functions
+  
+
 --LOAD BCT AND CHECK FOR ERRORS
     if pcall(bctLoader(bctPath)) then
   
     else
         local loop = true;
         term.setCursorPos(0, 4);
-        term.write("eBoot: The Boot Configuration Table could not be found. You must provide a valid BCT file to continue booting.");
+        term.write("BOOT: Invalid boot configuration table. Type a valid BCT path, or type 'reboot' to reboot the system.");
         while(loop == true) do
             term.setCursorPos(1, 5);
             term.clearLine();
             term.write("path>");
             local newPath = read();
-            if pcall(settingsLoader(newPath)) then loop = false else end
+    
+            if newPath = "reboot" then
+              os.reboot();
+      
+            elseif pcall(bctLoader(newPath)) then loop = false 
+    
+            else 
+              term.write("invalid path!");
+              sleep(3)
+            end
+    
         end
    end
 
 --
 term.clear()
 term.setCursorPos(1, 1)
-term.write("Loading Craftix at ", kernelPath, ". To access startup options, press SPACE now.");
+term.write("Loading Craftix at ", kernelPath, "...");
+
+if pcall(kldLoader(kernelPath)) then
+  
+else
+ 
+term.setCursorPos(1, 2)
+term.write("BOOT: Couldn't load the Craftix kernel. System halted.");
+end
+
+
+
