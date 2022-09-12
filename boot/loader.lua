@@ -1,7 +1,7 @@
 --Craftix eBoot loader
 
 --vars
-local bctPath = "/craftix/boot/eboot.ect";
+local bctPath = "/craftix/boot/ebcfg.ect";
 local kernelPath;
 
 local function bctLoader (local path)
@@ -16,13 +16,11 @@ local function kldLoader (local path)
   
 end
 
-local function manualLoad ()
-  term.clear();
-  term.setCursorPos(1, 1)
-  term.write("BOOT: Enter kernel path and hit enter:")
-  
-  
-  
+local function terminateCatch () --catch termination
+    while true do
+        local event = os.pullEventRaw();
+        if event == "terminate" then else end
+    end
 end
   
   
@@ -30,6 +28,8 @@ end
   
 
 --LOAD BCT AND CHECK FOR ERRORS
+
+local function boot() 
     if pcall(bctLoader(bctPath)) then
   
     else
@@ -54,9 +54,8 @@ end
     
         end
    end
-
---
-term.clear()
+  
+  term.clear()
 term.setCursorPos(1, 1)
 term.write("Loading Craftix at ", kernelPath, "...");
 
@@ -67,6 +66,8 @@ else
 term.setCursorPos(1, 2)
 term.write("BOOT: Couldn't load the Craftix kernel. System halted.");
 end
-
+end
+--
+parallel.WaitForAll(boot, terminateCatch)
 
 
